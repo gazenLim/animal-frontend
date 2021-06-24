@@ -9,7 +9,6 @@ class Animal{
         this.name = name
         this.image = image
         this.description = description
-        this.id = id
         this.category_id = category_id
         this.element = document.createElement('div')
         this.element.id = `${this.id}`
@@ -19,9 +18,7 @@ class Animal{
         Animal.all.push(this)
     }
 
-    newAlpha(ani){
-        debugger
-    }
+  
 
     addEventListeners(){
         this.element.addEventListener('click', this.handleListClick)
@@ -56,7 +53,6 @@ class Animal{
         this.name = name
        this.description = description
        this.image = image
-       
        this.fullRender()
    }
 
@@ -71,21 +67,24 @@ class Animal{
     }
 
     editAnimal(animal){
+        
+        let formDiv = document.createElement('form')
+        formDiv.dataset.id = `${this.id}`
+        
        const newForm = document.querySelector(`#newForm`)
+       
        let updateAnimal = `
        <form data-id="${this.id}">
-       <input type="text" name="name" value =${this.name}>
+       <input type="text" name="name" value ="${this.name}">
        <input type="text" name="description" value = "${this.description}">
-       <input type="text" name="image" value = ${this.image}.src>
+       <input type="text" name="image" value = "${this.image}".src>
        <input  type="submit">
        </form>
        `
-       
-       let formDiv = document.createElement('form')
-       formDiv.dataset.id = `${this.id}`
+       console.log(updateAnimal)
        formDiv.innerHTML = updateAnimal
-      newForm.append(formDiv)
-      
+       newForm.append(formDiv)
+             
 
     //   formDiv.addEventListener('submit',(e)=>{
     //   this.sendAnimalRequest(e)})
@@ -133,8 +132,11 @@ class Animal{
          }else if(event.target.className === "card-title"){
              animalApi.showAnimals(id)            
          }else if(event.target.className === "edit"){
-            this.editAnimal(id)
-        }
+                   this.editAnimal(id)
+            }
+           const  allEditButtons = document.querySelectorAll('.edit')
+           console.log(allEditButtons)
+           allEditButtons.forEach(button => {button.disabled = true})
       
     }
 
