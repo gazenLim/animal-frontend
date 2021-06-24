@@ -8,6 +8,8 @@ class animalsApi{
         fetch(this.baseUrl)
         .then(resp => resp.json())
         .then(animals => {
+            
+      
             animals.forEach(ani =>{
                 
              let animal =  new Animal(ani)
@@ -47,7 +49,7 @@ class animalsApi{
     const imageAnimal = e.target.image.value
     const category_id = e.target.category.value
     
-    const animalOption = {
+    let animalOption = {
        method: "POST",
        headers: {"Content-Type": "application/json", "Accept": "application/json"},
        body: JSON.stringify({name: nameAnimal, description: descAnimal, image: imageAnimal, category_id: category_id})
@@ -88,10 +90,36 @@ class animalsApi{
         addBtn.hidden = false
     }
 
-
+    animalToy (e){
+        e.preventDefault()
+        const id = e.target.dataset.id
+        const nameAnimal =e.target.name.value
+        const  descAnimal = e.target.description.value
+        const images = e.target.image.value
        
-           
-   
 
+        
+        let config = {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json", "Accepts": "application/json"},
+            body: JSON.stringify({name: nameAnimal, description: descAnimal, image:images})
+        }
+        
+        fetch(`http://127.0.0.1:3000/animals/${id}`, config)
+        .then(resp => resp.json())
+        .then(response=>{
+
+            let ani = Animal.all.find(i => i.id == response.data.attributes.id)
+            
+ani.editUpdate(response.data.attributes)
+editFormAnimal.innerHTML = ''
+
+})
+
+
+        
+    }
+    
+  
 
 }

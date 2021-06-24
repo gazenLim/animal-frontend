@@ -19,6 +19,9 @@ class Animal{
         Animal.all.push(this)
     }
 
+    newAlpha(ani){
+        debugger
+    }
 
     addEventListeners(){
         this.element.addEventListener('click', this.handleListClick)
@@ -49,7 +52,13 @@ class Animal{
     }
 
 
-
+   editUpdate({name, description, image}){
+        this.name = name
+       this.description = description
+       this.image = image
+       
+       this.fullRender()
+   }
 
 
     showAni(){
@@ -62,7 +71,6 @@ class Animal{
     }
 
     editAnimal(animal){
-        
        const newForm = document.querySelector(`#newForm`)
        let updateAnimal = `
        <form data-id="${this.id}">
@@ -77,40 +85,43 @@ class Animal{
        formDiv.dataset.id = `${this.id}`
        formDiv.innerHTML = updateAnimal
       newForm.append(formDiv)
+      
 
-      formDiv.addEventListener('submit', e =>{
-          e.preventDefault()
-          const id = e.target.dataset.id
-          this.sendAnimalRequest(e)
-      })
-           }
-
-     
-
-           sendAnimalRequest(e){
-            const id = e.target.dataset.id
-            const newAnimal ={
-                name: e.target.name.value,
-                description: e.target.description.value,
-                image: e.target.image.value
-
-            }
-
-            let config ={
-                method: 'PATCH',
-                headers: {"Content-Type": "application/json", "Accepts":"application/json"},
-                body: JSON.stringify(newAnimal)
-            }
-          
-
-           fetch(`http://127.0.0.1:3000/animals/${id}`, config)
-
-
-
-
+    //   formDiv.addEventListener('submit',(e)=>{
+    //   this.sendAnimalRequest(e)})
            
-            // displayContainer.hidden = true
            }
+
+        //     sendAnimalRequest=(e)=>{
+        //         e.preventDefault()
+        //        const id = e.target.dataset.id
+        //        const name =e.target.name.value
+        //        const descAnimal = e.target.description.value
+        //        const imageAnimal = e.target.image.value
+
+        //         let newAnimal ={
+        //             name,
+        //             descAnimal,
+        //             imageAnimal
+        //         }
+                          
+            
+        //     let config ={
+        //         method: 'PATCH',
+        //         headers: {"Content-Type": "application/json", "Accepts":"application/json"},
+        //         body: JSON.stringify(newAnimal)
+        //     }
+            
+        //    fetch(`http://127.0.0.1:3000/animals/${id}`, config)
+        //    .then(resp => resp.json())
+        //    .then(animal=>{
+        //         let ani = new Animal(animal.data.attributes)
+        //         ani.renderAnimal()
+        
+        // })
+           
+           
+        //    }
 
 
 

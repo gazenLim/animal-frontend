@@ -4,6 +4,8 @@ const animalsForm = document.getElementById('add-friends')
 const animalApi = new animalsApi
 const categoriesApis = new categoriesApi 
 
+const editFormAnimal = document.querySelector("#newForm")
+
    
 
 
@@ -13,6 +15,7 @@ const categoriesApis = new categoriesApi
             animalApi.fetchAnimals()
             categoriesApis.fetchCategories()
             animalsForm.addEventListener('submit', animalApi.toyFormContainer )
+            editFormAnimal.addEventListener('submit', animalApi.animalToy)
          })
 
 
