@@ -29,9 +29,7 @@ class Category{
    
     domRender(){
         this.element.innerHTML = `
-      
-     ${this.name}
-
+           ${this.name}
        `
        return this.element
     }
@@ -40,7 +38,7 @@ class Category{
         return Animal.all.filter(i => i.category_id == this.id)
     }
 
-    showCategory =(e)=>{
+    showCategory = (e) =>{
         const display = document.getElementById('cards')
         console.log(this)
         display.innerHTML = ''

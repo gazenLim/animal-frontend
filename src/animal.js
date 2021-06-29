@@ -11,8 +11,9 @@ class Animal{
         this.description = description
         this.category_id = category_id
         this.element = document.createElement('div')
-        this.element.id = `${this.id}`
         this.itemList = document.getElementById('cards')
+        this.element.id = `${this.id}`
+
 
 
         Animal.all.push(this)
@@ -37,7 +38,7 @@ class Animal{
 
     fullRender(){
         this.element.innerHTML = `
-        <div class ="card">
+        <div class ="card" data-id=${this.id}>
         <h2 class= "card-title" data-id=${this.id}  > ${this.name}</h2>
         <img  class ="ani-image" src= ${this.image} />
         <p class="card-desc"> ${this.description}</p>

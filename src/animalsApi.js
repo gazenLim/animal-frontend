@@ -8,11 +8,8 @@ class animalsApi{
         fetch(this.baseUrl)
         .then(resp => resp.json())
         .then(animals => {
-            
-      
             animals.forEach(ani =>{
-                
-             let animal =  new Animal(ani)
+                let animal =  new Animal(ani)
                 animal.renderAnimal(ani)
                 
             })
@@ -104,6 +101,45 @@ class animalsApi{
        
  }
 
+
+ 
+ newAddAnimal = (e) =>{
+     
+      const newAnimal = "RedPanda"
+     const desAnimal = "this is RedPanda "
+     const image = "https://i.natgeofe.com/k/63b1a8a7-0081-493e-8b53-81d01261ab5d/red-panda-full-body_16x9.jpg?w=1200"
+     const category_id = 3
+    console.log('hello')  
+    console.log(image)
+    
+    let newsAnimal = {
+        method: 'POST',
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({ name: newAnimal, description: desAnimal, image: image, category_id: category_id})
+    }
+    
+    fetch('http://127.0.0.1:3000/animals', newsAnimal)
+    .then(resp => resp.json())
+    .then(newAnimal => {
+        let anis = new Animal(newAnimal.data.attributes)
+        displayContainer.style.display = "none"
+
+
+        anis.renderAnimal()
+        
+    })
+
+    animalsForm.reset() 
+
+    
+
+
+
+
+
+
+}
+  
    showAnimals(id){
        fetch(this.baseUrl+`/${id}`)
        .then(resp=> resp.json())
@@ -123,7 +159,5 @@ class animalsApi{
         addBtn.hidden = false
     }
 
-    
-  
 
 }

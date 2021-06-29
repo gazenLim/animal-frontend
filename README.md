@@ -34,4 +34,4 @@ I have added some feature
 which help to delete and edit this app.
 
 
-[backend here]https://github.com/gazenLim/animals-backend]
+[Forntend here] https://github.com/gazenLim/animal-frontend

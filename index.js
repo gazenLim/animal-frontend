@@ -3,10 +3,9 @@ const toyFormContainer = document.querySelector(".container");
 const animalsForm = document.getElementById('add-friends')
 const animalApi = new animalsApi
 const categoriesApis = new categoriesApi 
+const newAnimal =document.getElementById('addNewAnimal')
 
 const editFormAnimal = document.querySelector("#newForm")
-
-   
 
 
          document.addEventListener("DOMContentLoaded", () => {
@@ -16,11 +15,12 @@ const editFormAnimal = document.querySelector("#newForm")
             categoriesApis.fetchCategories()
             animalsForm.addEventListener('submit', animalApi.toyFormContainer )
             editFormAnimal.addEventListener('submit', animalApi.animalToy)
+            newAnimal.addEventListener('click', animalApi.newAddAnimal)
+
+            
+
+
          })
-
-
-         
-   
    // function fetchAnimals(){
    // fetch('http://localhost:3000/animals')
    // .then(resp => resp.json())
